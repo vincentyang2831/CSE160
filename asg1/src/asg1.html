@@ -1,0 +1,61 @@
+<!--
+  Vincent Yang
+  vyang12@ucsc.edu
+
+  Notes to grader:
+    My image is inspired from the sticker for my snowboarding group, Soy Sauce Nation,
+    Essentially a Kikkoman soy sauce bottle with a snowy mountain. Not exactly a clone,
+    but was inspsired by it.
+    
+  
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Change a point color</title>
+  </head>
+
+  <body onload="main()">
+    <canvas id="webgl" width="400" height="400">
+    Please use a browser that supports "canvas"
+    </canvas>
+
+    <p>
+      <button type="button" id="clearButton">Clear</button>
+    </p>
+
+    <p>
+      Drawing mode: <br>
+      <button type="button" id="squaresButton">Squares</button>
+      <button type="button" id="triangleButton">Triangles</button>
+      <button type="button" id="circleButton">Circle</button>
+
+
+    </p>
+
+    <p>
+      Red <input type="range" min="0" max="100" value="100" class="slider" id="redSlide"> <br>
+      Green <input type="range" min="0" max="100" value="0" class="slider" id="greenSlide"><br>
+      Blue <input type="range" min="0" max="100" value="0" class="slider" id="blueSlide"><br>
+
+    </p>
+
+    <p>
+      Size: <input type="range" min="5" max="40" value="0" class="slider" id="sizeSlide">
+      (Circle) Segment Count: <input type="range" min="10" max="50" value="10" class="slider" id="segCount">
+    </p>
+
+    <p><button type="button" id="myImage">Draw my Image</button></p>
+
+    <script src="../lib/webgl-utils.js"></script>
+    <script src="../lib/webgl-debug.js"></script>
+    <script src="../lib/cuon-utils.js"></script>
+    <script src="asg1.js"></script>
+    <script src="Point.js"></script>
+    <script src="Triangle.js"></script>
+    <script src="Circle.js"></script>
+
+  </body>
+</html>
