@@ -1,0 +1,74 @@
+<!--
+  Vincent Yang
+  vyang12@ucsc.edu
+
+  Notes to grader:
+    Animal is a cat:)
+    
+  
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Change a point color</title>
+  </head>
+
+  <body onload="main()">
+    <canvas id="webgl" width="400" height="400">
+    Please use a browser that supports "canvas"
+    </canvas>
+
+    <p>
+      Press shift+click to toggle Run Mode
+    </p>
+
+    <p>
+      <div id="perf">
+      </div>
+    </p>
+
+    <br>
+    <p>
+      Rotate Head<input type="range" min="-10" max="10" value="0" class="slider" id="headSlide">
+      Animation:
+      <button type="button" id="animateHeadOn">ON</button>
+      <button type="button" id="animateHeadOff">OFF</button>
+    </p>
+
+    <p>
+      Tail<input type="range" min="-15" max="15" value="0" class="slider" id="tailSlide">
+      Animation:
+      <button type="button" id="animateTailOn">ON</button>
+      <button type="button" id="animateTailOff">OFF</button>
+    </p>
+
+    <p>
+      Walk mode:
+      <button type="button", id="walkOn">On</button>
+      <button type="button", id="walkOff">Off</button>
+
+    </p>
+
+    <p>
+      Camera X Angle <input type="range" min="0" max="360" value="5" class="slider" id="angleYSlider">
+      Camera Y Angle <input type="range" min="0" max="360" value="5" class="slider" id="angleXSlider">
+    </p>
+
+    <script src="../lib/webgl-utils.js"></script>
+    <script src="../lib/webgl-debug.js"></script>
+    <script src="../lib/cuon-utils.js"></script>
+    <script src="../lib/cuon-matrix-cse160.js"></script>
+    <script src="World.js"></script>
+    <script src="Point.js"></script>
+    <script src="Triangle.js"></script>
+    <script src="Circle.js"></script>
+    <script src="Cube.js"></script>
+    <script src="Prism.js"></script>
+    <script src="camera.js"></script>
+
+    <!-- <script src="BlockyAnimal.js"></script> -->
+
+  </body>
+</html>
