@@ -36,6 +36,7 @@ var FSHADER_SOURCE =`
   uniform vec3 u_cameraPos;
   varying vec4 v_VertPos;
   uniform bool u_lightOn;
+  uniform vec4 u_lightColor;
   void main() {
 
     if(u_whichTexture == -3){
@@ -95,7 +96,7 @@ var FSHADER_SOURCE =`
         gl_FragColor = vec4(specular+diffuse+ambient,1.0);
       }
     }else{
-      gl_FragColor = vec4(specular+diffuse+ambient,1.0);
+      gl_FragColor = vec4(specular+diffuse+ambient,1.0) * u_lightColor;
     }
   }`
 
@@ -124,6 +125,7 @@ var FSHADER_SOURCE =`
   let u_whichTexture;
   let u_lightPos;
   let u_cameraPos;
+  let u_LightColor;
   let camera;
   let lightRotate = false;
   let u_lightOn;
@@ -182,6 +184,7 @@ var FSHADER_SOURCE =`
   let g_normalOn = false;
   let g_lightOn = true;
   let g_lightPos=[0,1.5,-2];
+  let g_LightColor = [1.0, 1.0, 1.0, 1.0];
 
   let g_lastX = null;
   let g_lastY= null;
@@ -258,6 +261,13 @@ function connectVariablesToGLSL(){
   u_lightOn = gl.getUniformLocation(gl.program, 'u_lightOn');
   if (!u_lightOn) {
     console.log('Failed to get the storage location of u_lightOn');
+    return;
+  }
+
+  // Get the storage location of u_FragColor
+  u_LightColor = gl.getUniformLocation(gl.program, 'u_lightColor');
+  if (!u_LightColor) {
+    console.log('Failed to get the storage location of u_LightColor');
     return;
   }
 
@@ -370,6 +380,11 @@ function addActionsForHtmlUI(){
   document.getElementById('lightSlideX').addEventListener('mousemove', function(ev) {if(ev.buttons == 1) {g_lightPos[0] = this.value/85; renderAllShapes(); console.log("x movement deteced");}});
   document.getElementById('lightSlideY').addEventListener('mousemove', function(ev) {if(ev.buttons == 1) {g_lightPos[1] = this.value/100; renderAllShapes();}});
   document.getElementById('lightSlideZ').addEventListener('mousemove', function(ev) {if(ev.buttons == 1) {g_lightPos[2] = this.value/100; renderAllShapes();}});
+  document.getElementById("red").addEventListener('mouseup', function () {g_LightColor[0] = this.value/100});
+  document.getElementById("green").addEventListener('mouseup', function () {g_LightColor[1] = this.value/100});
+  document.getElementById("blue").addEventListener('mouseup', function () {g_LightColor[2] = this.value/100});
+
+
 
 
   // Size Slider events
@@ -641,7 +656,9 @@ function renderAllShapes(){
 
   //pass the camera position to GLSL
   gl.uniform3f(u_cameraPos, camera.eye.elements[0], camera.eye.elements[1], camera.eye.elements[2]);
-  // console.log([camera.eye.x, camera.eye.y, camera.eye.z]);
+
+  //pass light color to GLSL
+  gl.uniform4f(u_LightColor, g_LightColor[0], g_LightColor[1], g_LightColor[2], g_LightColor[3]);
 
   //pass light status
   gl.uniform1i(u_lightOn, g_lightOn);
