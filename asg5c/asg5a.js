@@ -515,28 +515,6 @@ function main() {
 				});
 			});
 		}
-
-		// Blowfish by jeremy [CC-BY] via Poly Pizza
-		{
-			const mtlLoader = new MTLLoader();
-			mtlLoader.load('Objects/Blowfish_01.mtl', (mtl) =>{
-				mtl.preload();
-			
-				const objLoader = new OBJLoader();
-				objLoader.setMaterials(mtl);
-
-				objLoader.load('Objects/Blowfish_01.obj', (root) => {
-					root.scale.x = 50;
-					root.scale.y = 50;
-					root.scale.z = 50;
-					root.position.set(2,0,0);
-					// root.rotateY(Math.PI / 180 * 90);
-					// root.rotateZ(Math.PI / 180 * -8);
-
-					scene.add(root);
-				});
-			});
-		}
 	}
 
 	// directional light
